@@ -44,7 +44,6 @@ final class AllureCodeception extends Extension
     private const DEFAULT_RESULTS_DIRECTORY = 'allure-results';
 
     protected static array $events = [
-        Events::MODULE_INIT => 'moduleInit',
         Events::SUITE_BEFORE => 'suiteBefore',
         Events::SUITE_AFTER => 'suiteAfter',
         Events::TEST_START => 'testStart',
@@ -71,19 +70,6 @@ final class AllureCodeception extends Extension
     public function _initialize(): void
     {
         parent::_initialize();
-        $this->reconfigure();
-    }
-
-    /**
-     * @throws ConfigurationException
-     */
-    public function moduleInit(): void
-    {
-        $this->reconfigure();
-    }
-
-    private function reconfigure(): void
-    {
         QametaAllure::reset();
         $this->testLifecycle = null;
         $this->threadDetector = null;
